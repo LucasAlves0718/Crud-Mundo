@@ -24,16 +24,13 @@ Este projeto é um sistema CRUD (Criar, Ler, Atualizar, Deletar) para gerenciar 
 
 A estrutura do banco de dados é composta por duas tabelas principais:
 
-1. **Continentes:**
-   - `id` (INT, chave primária)
-   - `nome` (VARCHAR)
 
-2. **Países:**
+1. **Países:**
    - `id` (INT, chave primária)
    - `nome` (VARCHAR)
    - `continente_id` (INT, chave estrangeira referenciando a tabela Continentes)
 
-3. **Cidades:**
+2. **Cidades:**
    - `id` (INT, chave primária)
    - `nome` (VARCHAR)
    - `pais_id` (INT, chave estrangeira referenciando a tabela Países)
