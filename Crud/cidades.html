@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Cidades</title>
+<link rel="stylesheet" href="css/style.css">
+<script>
+const urlParams = new URLSearchParams(window.location.search);
+const pais_id = urlParams.get('pais_id');
+
+async function carregarCidades() {
+    const res = await fetch(`cidades.php?acao=listar&pais_id=${pais_id}`);
+    const dados = await res.json();
+    const tbody = document.querySelector('#tabelaCidades tbody');
+    tbody.innerHTML = '';
+    dados.forEach(c => {
+        tbody.innerHTML += `
+            <tr>
+                <td>${c.id}</td>
+                <td>${c.nome}</td>
+                <td><button onclick="excluirCidade(${c.id})">Excluir</button></td>
+            </tr>
+        `;
+    });
+}
+
+async function adicionarCidade(event) {
+    event.preventDefault();
+    const nome = document.querySelector('#cidadeNome').value;
+    const formData = new FormData();
+    formData.append('nome', nome);
+    formData.append('pais_id', pais_id);
+
+    const res = await fetch('cidades.php?acao=adicionar', { method:'POST', body: formData });
+    alert(await res.text());
+    document.querySelector('#formCidade').reset();
+    carregarCidades();
+}
+
+async function excluirCidade(id) {
+    if (!confirm('Deseja realmente excluir esta cidade?')) return;
+    const formData = new FormData();
+    formData.append('id', id);
+    const res = await fetch('cidades.php?acao=deletar', { method:'POST', body: formData });
+    alert(await res.text());
+    carregarCidades();
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    carregarCidades();
+    document.querySelector('#formCidade').addEventListener('submit', adicionarCidade);
+});
+</script>
+</head>
+<body>
+
+<h2>Cidades</h2>
+
+<form id="formCidade">
+    <input type="text" id="cidadeNome" placeholder="Nome da cidade" required>
+    <button type="submit">Adicionar Cidade</button>
+</form>
+
+<table id="tabelaCidades">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nome</th>
+            <th>Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        <!-- Cidades serão carregadas via JS -->
+    </tbody>
+</table>
+
+<a href="index.html">Voltar</a>
+
+</body>
+</html>

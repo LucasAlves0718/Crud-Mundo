@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>CRUD Mundo</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<h2>Países</h2>
+
+<form id="formPais">
+    <input type="text" id="paisNome" placeholder="Nome do país" required>
+    <select id="paisContinente" required>
+        <option value="">Selecione o continente</option>
+        <option value="1">América do Sul</option>
+        <option value="2">América do Norte</option>
+        <option value="3">Europa</option>
+        <option value="4">África</option>
+        <option value="5">Ásia</option>
+        <option value="6">Oceania</option>
+    </select>
+    <button type="submit">Adicionar País</button>
+</form>
+
+<table id="tabelaPaises">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nome</th>
+            <th>Continente</th>
+            <th>Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        <!-- Países serão carregados via JS -->
+    </tbody>
+</table>
+
+<script src="js/app.js"></script>
+</body>
+</html>
