@@ -1,0 +1,106 @@
+-- Criação do banco de dados
+CREATE DATABASE crud_mundo;
+-- drop database
+USE crud_mundo;
+
+-- Tabela de Países
+CREATE TABLE paises (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(255) NOT NULL,
+    continente VARCHAR(255) NOT NULL
+);
+
+-- Tabela de Cidades
+CREATE TABLE cidades (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(255) NOT NULL,
+    pais_id INT,
+    FOREIGN KEY (pais_id) REFERENCES paises(id) ON DELETE CASCADE
+);
+
+-- Inserir Países de Exemplo (5 países por continente)
+INSERT INTO paises (nome, continente) VALUES 
+('Brasil', 'América do Sul'),
+('Argentina', 'América do Sul'),
+('Chile', 'América do Sul'),
+('Peru', 'América do Sul'),
+('Colômbia', 'América do Sul'),
+
+('Estados Unidos', 'América do Norte'),
+('Canadá', 'América do Norte'),
+('México', 'América do Norte'),
+('Cuba', 'América do Norte'),
+('República Dominicana', 'América do Norte'),
+
+('Nigéria', 'África'),
+('Egito', 'África'),
+('África do Sul', 'África'),
+('Quênia', 'África'),
+('Argélia', 'África'),
+
+('China', 'Ásia'),
+('Índia', 'Ásia'),
+('Japão', 'Ásia'),
+('Coreia do Sul', 'Ásia'),
+('Indonésia', 'Ásia'),
+
+('França', 'Europa'),
+('Alemanha', 'Europa'),
+('Reino Unido', 'Europa'),
+('Itália', 'Europa'),
+('Espanha', 'Europa'),
+
+('Austrália', 'Oceania'),
+('Nova Zelândia', 'Oceania'),
+('Fiji', 'Oceania'),
+('Ilhas Salomão', 'Oceania'),
+('Vanuatu', 'Oceania');
+
+-- Inserir Cidades de Exemplo (5 cidades por país)
+-- Brasil
+INSERT INTO cidades (nome, pais_id) VALUES 
+('São Paulo', 1),
+('Rio de Janeiro', 1),
+('Belo Horizonte', 1),
+('Porto Alegre', 1),
+('Recife', 1);
+
+-- Estados Unidos
+INSERT INTO cidades (nome, pais_id) VALUES 
+('Nova York', 6),
+('Los Angeles', 6),
+('Chicago', 6),
+('Miami', 6),
+('San Francisco', 6);
+
+-- Nigéria
+INSERT INTO cidades (nome, pais_id) VALUES 
+('Lagos', 11),
+('Abuja', 11),
+('Kano', 11),
+('Ibadan', 11),
+('Port Harcourt', 11);
+
+-- China
+INSERT INTO cidades (nome, pais_id) VALUES 
+('Pequim', 16),
+('Xangai', 16),
+('Shenzhen', 16),
+('Guangzhou', 16),
+('Hong Kong', 16);
+
+-- França
+INSERT INTO cidades (nome, pais_id) VALUES 
+('Paris', 21),
+('Marseille', 21),
+('Lyon', 21),
+('Toulouse', 21),
+('Nice', 21);
+
+-- Austrália
+INSERT INTO cidades (nome, pais_id) VALUES 
+('Sydney', 26),
+('Melbourne', 26),
+('Brisbane', 26),
+('Perth', 26),
+('Adelaide', 26);
