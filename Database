@@ -1,7 +1,11 @@
 -- Criação do banco de dados
 CREATE DATABASE crud_mundo;
--- drop database
+-- drop database crud_mundo;
 USE crud_mundo;
+CREATE TABLE continentes (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(50) NOT NULL
+);
 
 -- Tabela de Países
 CREATE TABLE paises (
@@ -104,3 +108,12 @@ INSERT INTO cidades (nome, pais_id) VALUES
 ('Brisbane', 26),
 ('Perth', 26),
 ('Adelaide', 26);
+
+INSERT INTO continentes (nome) VALUES
+('América do Sul'),
+('América do Norte'),
+('Europa'),
+('África'),
+('Ásia'),
+('Oceania');
+ALTER TABLE paises ADD COLUMN continente_id INT NOT NULL;
