@@ -51,7 +51,7 @@ $cidades = listarCidades($pais_id);
                     <td><?= $c['id'] ?></td>
                     <td><?= htmlspecialchars($c['nome']) ?></td>
                     <td>
-                        <a href="editar_cidade.php?id=<?= $c['id'] ?>&pais_id=<?= $pais_id ?>" class="btn edit">Editar</a>
+                        <a href="editar_cidades.php?id=<?= $c['id'] ?>&pais_id=<?= $pais_id ?>" class="btn edit">Editar</a>
                         <form action="cidades.php?acao=deletar&id=<?= $c['id'] ?>&pais_id=<?= $pais_id ?>" method="POST" style="display:inline">
                             <button type="submit" class="btn delete" onclick="return confirm('Excluir cidade?')">Excluir</button>
                         </form>
@@ -65,3 +65,4 @@ $cidades = listarCidades($pais_id);
 </div>
 </body>
 </html>
+
