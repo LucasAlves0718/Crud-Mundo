@@ -1,36 +1,11 @@
-# Crud-Mundo
-# Projeto CRUD Mundo
+# Sample Snack app
 
-Este projeto é um sistema CRUD (Criar, Ler, Atualizar, Deletar) para gerenciar informações sobre países e suas respectivas cidades. Ele permite adicionar 5 países por continente e 5 cidades por país, utilizando tecnologias como MySQL, PHP, CSS, HTML e React Native (RN) para a interface mobile.
+Open the `App.js` file to start writing some code. You can preview the changes directly on your phone or tablet by scanning the **QR code** or use the iOS or Android emulators. When you're done, click **Save** and share the link!
 
-## Tecnologias Utilizadas
+When you're ready to see everything that Expo provides (or if you want to use your own editor) you can **Download** your project and use it with [expo cli](https://docs.expo.dev/get-started/installation/#expo-cli)).
 
-- **Backend:**
-  - PHP (para manipulação de dados e interações com o banco)
-  - MySQL (banco de dados)
-- **Frontend Web:**
-  - HTML (estrutura da página)
-  - CSS (estilo e design)
-- **Frontend Mobile:**
-  - React Native (para criar uma interface de usuário responsiva)
-  
-## Funcionalidades
+All projects created in Snack are publicly available, so you can easily share the link to this project via link, or embed it on a web page with the `<>` button.
 
-- Adicionar, editar, excluir e listar países.
-- Adicionar, editar, excluir e listar cidades por país.
-- Exibir uma lista de países por continente, com a opção de visualizar as cidades de cada país.
-  
-## Estrutura do Banco de Dados
+If you're having problems, you can tweet to us [@expo](https://twitter.com/expo) or ask in our [forums](https://forums.expo.dev/c/expo-dev-tools/61) or [Discord](https://chat.expo.dev/).
 
-A estrutura do banco de dados é composta por duas tabelas principais:
-
-
-1. **Países:**
-   - `id` (INT, chave primária)
-   - `nome` (VARCHAR)
-   - `continente_id` (INT, chave estrangeira referenciando a tabela Continentes)
-
-2. **Cidades:**
-   - `id` (INT, chave primária)
-   - `nome` (VARCHAR)
-   - `pais_id` (INT, chave estrangeira referenciando a tabela Países)
+Snack is Open Source. You can find the code on the [GitHub repo](https://github.com/expo/snack).
