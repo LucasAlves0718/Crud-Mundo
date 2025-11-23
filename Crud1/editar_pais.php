@@ -39,7 +39,7 @@ $continentes = [
         <input type="hidden" name="id" value="<?= $pais['id'] ?>">
 
         <label>Nome do País:</label>
-        <input type="text" name="nome" value="<?= $pais['nome'] ?>" required>
+        <input type="text" name="nome" value="<?= htmlspecialchars($pais['nome']) ?>" required>
 
         <label>Continente:</label>
         <select name="continente_id" required>
@@ -49,6 +49,13 @@ $continentes = [
                 </option>
             <?php endforeach; ?>
         </select>
+
+        <!-- new fields -->
+        <label>Língua:</label>
+        <input type="text" name="lingua" value="<?= htmlspecialchars($pais['lingua'] ?? '') ?>">
+
+        <label>População:</label>
+        <input type="number" name="populacao" value="<?= htmlspecialchars($pais['populacao'] ?? '') ?>" min="0" step="1">
 
         <button type="submit" class="btn edit">Salvar Alterações</button>
     </form>

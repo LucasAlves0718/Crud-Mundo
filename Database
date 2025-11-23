@@ -7,11 +7,13 @@ CREATE TABLE continentes (
     nome VARCHAR(50) NOT NULL
 );
 
--- Tabela de Países
+-- Tabela de Países (usa continente_id agora e novos campos lingua, populacao)
 CREATE TABLE paises (
     id INT AUTO_INCREMENT PRIMARY KEY,
     nome VARCHAR(255) NOT NULL,
-    continente VARCHAR(255) NOT NULL
+    continente_id INT NOT NULL,
+    lingua VARCHAR(100) DEFAULT NULL,
+    populacao INT DEFAULT NULL
 );
 
 -- Tabela de Cidades
@@ -22,45 +24,45 @@ CREATE TABLE cidades (
     FOREIGN KEY (pais_id) REFERENCES paises(id) ON DELETE CASCADE
 );
 
--- Inserir Países de Exemplo (5 países por continente)
-INSERT INTO paises (nome, continente) VALUES 
-('Brasil', 'América do Sul'),
-('Argentina', 'América do Sul'),
-('Chile', 'América do Sul'),
-('Peru', 'América do Sul'),
-('Colômbia', 'América do Sul'),
+-- Inserir Países de Exemplo com língua e população aproximada (use continente_id 1..6)
+INSERT INTO paises (nome, continente_id, lingua, populacao) VALUES 
+('Brasil', 1, 'Português', 213000000),
+('Argentina', 1, 'Espanhol', 45600000),
+('Chile', 1, 'Espanhol', 19100000),
+('Peru', 1, 'Espanhol', 33000000),
+('Colômbia', 1, 'Espanhol', 50800000),
 
-('Estados Unidos', 'América do Norte'),
-('Canadá', 'América do Norte'),
-('México', 'América do Norte'),
-('Cuba', 'América do Norte'),
-('República Dominicana', 'América do Norte'),
+('Estados Unidos', 2, 'Inglês', 331000000),
+('Canadá', 2, 'Inglês/Francês', 38000000),
+('México', 2, 'Espanhol', 128000000),
+('Cuba', 2, 'Espanhol', 11300000),
+('República Dominicana', 2, 'Espanhol', 11100000),
 
-('Nigéria', 'África'),
-('Egito', 'África'),
-('África do Sul', 'África'),
-('Quênia', 'África'),
-('Argélia', 'África'),
+('Nigéria', 4, 'Inglês', 206000000),
+('Egito', 4, 'Árabe', 102000000),
+('África do Sul', 4, 'Inglês/Africânder', 59000000),
+('Quênia', 4, 'Suaíli/Inglês', 54000000),
+('Argélia', 4, 'Árabe', 44000000),
 
-('China', 'Ásia'),
-('Índia', 'Ásia'),
-('Japão', 'Ásia'),
-('Coreia do Sul', 'Ásia'),
-('Indonésia', 'Ásia'),
+('China', 5, 'Mandarim (Chinês)', 1441000000),
+('Índia', 5, 'Hindi/Inglês', 1393000000),
+('Japão', 5, 'Japonês', 125800000),
+('Coreia do Sul', 5, 'Coreano', 51700000),
+('Indonésia', 5, 'Indonésio', 276000000),
 
-('França', 'Europa'),
-('Alemanha', 'Europa'),
-('Reino Unido', 'Europa'),
-('Itália', 'Europa'),
-('Espanha', 'Europa'),
+('França', 3, 'Francês', 67000000),
+('Alemanha', 3, 'Alemão', 83000000),
+('Reino Unido', 3, 'Inglês', 67000000),
+('Itália', 3, 'Italiano', 60000000),
+('Espanha', 3, 'Espanhol', 47000000),
 
-('Austrália', 'Oceania'),
-('Nova Zelândia', 'Oceania'),
-('Fiji', 'Oceania'),
-('Ilhas Salomão', 'Oceania'),
-('Vanuatu', 'Oceania');
+('Austrália', 6, 'Inglês', 25000000),
+('Nova Zelândia', 6, 'Inglês', 5000000),
+('Fiji', 6, 'Inglês/Fijiano', 900000),
+('Ilhas Salomão', 6, 'Inglês', 700000),
+('Vanuatu', 6, 'Bislama/Francês/Inglês', 300000);
 
--- Inserir Cidades de Exemplo (5 cidades por país)
+-- Inserir Cidades de Exemplo (mantendo os mesmos pais_id conforme ordem acima)
 -- Brasil
 INSERT INTO cidades (nome, pais_id) VALUES 
 ('São Paulo', 1),
@@ -116,4 +118,3 @@ INSERT INTO continentes (nome) VALUES
 ('África'),
 ('Ásia'),
 ('Oceania');
-ALTER TABLE paises ADD COLUMN continente_id INT NOT NULL;

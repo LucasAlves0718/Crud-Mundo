@@ -5,9 +5,11 @@ include("config.php");
 if (isset($_GET['acao']) && $_GET['acao'] == 'adicionar') {
     $nome = $_POST['nome'];
     $continente_id = $_POST['continente_id'];
+    $lingua = $_POST['lingua'] ?? null;
+    $populacao = isset($_POST['populacao']) && $_POST['populacao'] !== '' ? (int)$_POST['populacao'] : null;
 
-    $stmt = $conn->prepare("INSERT INTO paises (nome, continente_id) VALUES (?, ?)");
-    $stmt->bind_param("si", $nome, $continente_id);
+    $stmt = $conn->prepare("INSERT INTO paises (nome, continente_id, lingua, populacao) VALUES (?, ?, ?, ?)");
+    $stmt->bind_param("sisi", $nome, $continente_id, $lingua, $populacao);
     $stmt->execute();
     header("Location: index.php");
     exit;
@@ -28,9 +30,11 @@ if (isset($_GET['acao']) && $_GET['acao'] == 'editar') {
     $id = $_POST['id'];
     $nome = $_POST['nome'];
     $continente_id = $_POST['continente_id'];
+    $lingua = $_POST['lingua'] ?? null;
+    $populacao = isset($_POST['populacao']) && $_POST['populacao'] !== '' ? (int)$_POST['populacao'] : null;
 
-    $stmt = $conn->prepare("UPDATE paises SET nome=?, continente_id=? WHERE id=?");
-    $stmt->bind_param("sii", $nome, $continente_id, $id);
+    $stmt = $conn->prepare("UPDATE paises SET nome=?, continente_id=?, lingua=?, populacao=? WHERE id=?");
+    $stmt->bind_param("sisii", $nome, $continente_id, $lingua, $populacao, $id);
     $stmt->execute();
     header("Location: index.php");
     exit;
@@ -39,7 +43,7 @@ if (isset($_GET['acao']) && $_GET['acao'] == 'editar') {
 // Listar países
 function listarPaises() {
     global $conn;
-    $sql = "SELECT id, nome, continente_id FROM paises";
+    $sql = "SELECT id, nome, continente_id, lingua, populacao FROM paises";
     $res = $conn->query($sql);
     return $res->fetch_all(MYSQLI_ASSOC);
 }

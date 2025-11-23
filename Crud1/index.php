@@ -22,6 +22,9 @@
             <option value="5">Ásia</option>
             <option value="6">Oceania</option>
         </select>
+        <!-- new inputs -->
+        <input type="text" name="lingua" placeholder="Língua (ex: Português)">
+        <input type="number" name="populacao" placeholder="População" min="0" step="1">
         <button type="submit" class="btn add">Adicionar</button>
     </form>
 
@@ -32,6 +35,8 @@
                 <th>ID</th>
                 <th>Nome</th>
                 <th>Continente</th>
+                <th>Língua</th>
+                <th>População</th>
                 <th>Ações</th>
             </tr>
         </thead>
@@ -51,6 +56,8 @@
                         <td>{$p['id']}</td>
                         <td>{$p['nome']}</td>
                         <td>" . ($continentes[$p['continente_id']] ?? "Não definido") . "</td>
+                        <td>" . htmlspecialchars($p['lingua'] ?? '') . "</td>
+                        <td>" . ($p['populacao'] !== null ? number_format((int)$p['populacao'], 0, ',', '.') : '') . "</td>
                         <td>
                             <a href='cidades_view.php?pais_id={$p['id']}' class='btn view'>Cidades</a>
                             <a href='editar_pais.php?id={$p['id']}' class='btn edit'>Editar</a>
